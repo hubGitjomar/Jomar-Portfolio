@@ -1,0 +1,706 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jomar Baculi — Portfolio</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      :root {
+        --navy: #0d1b2a;
+        --slate: #1e2d3d;
+        --accent: #2a6fdb;
+        --accent-light: #e8f0fd;
+        --text: #1a1a2e;
+        --muted: #5a6478;
+        --border: #e2e6ee;
+        --bg: #f8f9fb;
+        --white: #ffffff;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: "DM Sans", sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        font-size: 16px;
+        line-height: 1.7;
+      }
+
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        background: rgba(248, 249, 251, 0.92);
+        backdrop-filter: blur(8px);
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 5vw;
+        height: 60px;
+      }
+      .nav-logo {
+        font-family: "DM Serif Display", serif;
+        font-size: 20px;
+        color: var(--navy);
+        text-decoration: none;
+      }
+      .nav-links {
+        display: flex;
+        gap: 28px;
+        list-style: none;
+      }
+      .nav-links a {
+        font-size: 14px;
+        font-weight: 400;
+        color: var(--muted);
+        text-decoration: none;
+        letter-spacing: 0.02em;
+        transition: color 0.2s;
+      }
+      .nav-links a:hover {
+        color: var(--accent);
+      }
+
+      /* HERO */
+      .hero {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        padding: 100px 5vw 60px;
+        background: linear-gradient(160deg, #f0f4ff 0%, #f8f9fb 60%);
+      }
+      .hero-inner {
+        max-width: 680px;
+      }
+      .hero-tag {
+        display: inline-block;
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--accent);
+        background: var(--accent-light);
+        border-radius: 20px;
+        padding: 4px 14px;
+        margin-bottom: 24px;
+        letter-spacing: 0.04em;
+      }
+      .hero h1 {
+        font-family: "DM Serif Display", serif;
+        font-size: clamp(40px, 6vw, 68px);
+        line-height: 1.1;
+        color: var(--navy);
+        margin-bottom: 20px;
+      }
+      .hero p {
+        font-size: 18px;
+        color: var(--muted);
+        max-width: 500px;
+        margin-bottom: 36px;
+        line-height: 1.7;
+      }
+      .hero-cta {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+      .btn {
+        padding: 12px 26px;
+        border-radius: 8px;
+        font-size: 15px;
+        font-weight: 500;
+        cursor: pointer;
+        text-decoration: none;
+        transition: all 0.2s;
+        display: inline-block;
+      }
+      .btn-primary {
+        background: var(--accent);
+        color: #fff;
+        border: none;
+      }
+      .btn-primary:hover {
+        background: #1d5bbf;
+        transform: translateY(-1px);
+      }
+      .btn-outline {
+        background: transparent;
+        color: var(--accent);
+        border: 1.5px solid var(--accent);
+      }
+      .btn-outline:hover {
+        background: var(--accent-light);
+      }
+
+      /* SECTIONS */
+      section {
+        padding: 80px 5vw;
+      }
+      .section-label {
+        font-size: 12px;
+        font-weight: 500;
+        color: var(--accent);
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        margin-bottom: 8px;
+      }
+      .section-title {
+        font-family: "DM Serif Display", serif;
+        font-size: clamp(26px, 3vw, 38px);
+        color: var(--navy);
+        margin-bottom: 40px;
+      }
+      .divider {
+        max-width: 900px;
+        margin: 0 auto;
+        border-top: 1px solid var(--border);
+      }
+
+      .about-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 60px;
+        max-width: 900px;
+        align-items: start;
+      }
+      .about-text p {
+        color: var(--muted);
+        margin-bottom: 16px;
+      }
+      .about-stats {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+      .stat-card {
+        background: var(--white);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 20px;
+      }
+      .stat-num {
+        font-family: "DM Serif Display", serif;
+        font-size: 30px;
+        color: var(--navy);
+      }
+      .stat-label {
+        font-size: 13px;
+        color: var(--muted);
+        margin-top: 2px;
+      }
+
+      /* SKILLS */
+      .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 16px;
+        max-width: 900px;
+      }
+      .skill-group {
+        background: var(--white);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 20px 22px;
+      }
+      .skill-group-title {
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--accent);
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        margin-bottom: 12px;
+      }
+      .skill-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .skill-tag {
+        font-size: 13px;
+        color: var(--muted);
+        background: var(--bg);
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        padding: 4px 10px;
+      }
+
+      /* PROJECTS */
+      .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 20px;
+        max-width: 900px;
+      }
+      .project-card {
+        background: var(--white);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 26px;
+        transition:
+          border-color 0.2s,
+          transform 0.2s;
+      }
+      .project-card:hover {
+        border-color: var(--accent);
+        transform: translateY(-3px);
+      }
+      .project-type {
+        font-size: 12px;
+        font-weight: 500;
+        color: var(--accent);
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        margin-bottom: 10px;
+      }
+      .project-title {
+        font-family: "DM Serif Display", serif;
+        font-size: 20px;
+        color: var(--navy);
+        margin-bottom: 10px;
+      }
+      .project-desc {
+        font-size: 14px;
+        color: var(--muted);
+        line-height: 1.6;
+        margin-bottom: 16px;
+      }
+      .project-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+      }
+      .project-tag {
+        font-size: 12px;
+        color: var(--accent);
+        background: var(--accent-light);
+        border-radius: 5px;
+        padding: 3px 9px;
+      }
+
+      /* EDUCATION */
+      .edu-card {
+        max-width: 900px;
+        background: var(--white);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 30px;
+        display: flex;
+        gap: 24px;
+        align-items: flex-start;
+      }
+      .edu-icon {
+        width: 48px;
+        height: 48px;
+        background: var(--accent-light);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+      .edu-icon svg {
+        width: 24px;
+        height: 24px;
+      }
+      .edu-degree {
+        font-family: "DM Serif Display", serif;
+        font-size: 20px;
+        color: var(--navy);
+        margin-bottom: 4px;
+      }
+      .edu-school {
+        font-size: 15px;
+        color: var(--muted);
+      }
+      .edu-year {
+        font-size: 13px;
+        color: var(--accent);
+        margin-top: 8px;
+        font-weight: 500;
+      }
+
+      /* CONTACT */
+      .contact-wrapper {
+        max-width: 600px;
+      }
+      .contact-wrapper p {
+        color: var(--muted);
+        margin-bottom: 28px;
+        font-size: 17px;
+      }
+      .contact-links {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+      }
+      .contact-link {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding: 16px 20px;
+        background: var(--white);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        text-decoration: none;
+        color: var(--text);
+        transition:
+          border-color 0.2s,
+          transform 0.15s;
+      }
+      .contact-link:hover {
+        border-color: var(--accent);
+        transform: translateX(4px);
+      }
+      .contact-link-icon {
+        width: 36px;
+        height: 36px;
+        background: var(--accent-light);
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .contact-link-label {
+        font-size: 14px;
+        color: var(--muted);
+      }
+      .contact-link-value {
+        font-size: 15px;
+        font-weight: 500;
+        color: var(--navy);
+      }
+
+      /* FOOTER */
+      footer {
+        background: var(--navy);
+        color: #8a96a8;
+        text-align: center;
+        padding: 28px 5vw;
+        font-size: 13px;
+      }
+      footer span {
+        color: #fff;
+      }
+
+      @media (max-width: 640px) {
+        .about-grid {
+          grid-template-columns: 1fr;
+          gap: 32px;
+        }
+        .edu-card {
+          flex-direction: column;
+        }
+        .nav-links {
+          gap: 16px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <a class="nav-logo" href="#home">JB</a>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero" id="home">
+      <div class="hero-inner">
+        <span class="hero-tag">Available for opportunities</span>
+        <h1>Hi, I'm Jomar Baculi.</h1>
+        <p>
+          Fresh graduate in BS Computer Science, passionate about building
+          thoughtful software and solving real-world problems with clean,
+          efficient code.
+        </p>
+        <div class="hero-cta">
+          <a href="#projects" class="btn btn-primary">View My Work</a>
+          <a href="#contact" class="btn btn-outline">Get In Touch</a>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="section-label">About Me</div>
+      <div class="section-title">Who I Am</div>
+      <div class="about-grid">
+        <div class="about-text">
+          <p>
+            I'm a Computer Science graduate who enjoys turning ideas into
+            working software. I care about writing readable, maintainable code
+            and designing systems that are both functional and user-friendly.
+          </p>
+          <p>
+            I'm eager to grow in a collaborative environment, contribute to
+            meaningful projects, and keep learning — whether that's in software
+            engineering, web development, data, or wherever a good problem takes
+            me.
+          </p>
+          <p>
+            When I'm not coding, you'll find me exploring new technologies,
+            debugging side projects, or enjoying a good cup of coffee.
+          </p>
+        </div>
+        <div class="about-stats">
+          <div class="stat-card">
+            <div class="stat-num">CS</div>
+            <div class="stat-label">Bachelor of Science graduate</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num">4+</div>
+            <div class="stat-label">Projects completed</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num">∞</div>
+            <div class="stat-label">Willingness to learn</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num">PH</div>
+            <div class="stat-label">Based in the Philippines</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- SKILLS -->
+    <section id="skills">
+      <div class="section-label">Technical Skills</div>
+      <div class="section-title">What I Know</div>
+      <div class="skills-grid">
+        <div class="skill-group">
+          <div class="skill-group-title">Languages</div>
+          <div class="skill-tags">
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">Java</span>
+            <span class="skill-tag">C++</span>
+            <span class="skill-tag">JavaScript</span>
+            <span class="skill-tag">SQL</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-title">Web</div>
+          <div class="skill-tags">
+            <span class="skill-tag">HTML</span>
+            <span class="skill-tag">CSS</span>
+            <span class="skill-tag">React</span>
+            <span class="skill-tag">Node.js</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-title">Tools & Platforms</div>
+          <div class="skill-tags">
+            <span class="skill-tag">Git</span>
+            <span class="skill-tag">GitHub</span>
+            <span class="skill-tag">VS Code</span>
+            <span class="skill-tag">Linux</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-title">Concepts</div>
+          <div class="skill-tags">
+            <span class="skill-tag">OOP</span>
+            <span class="skill-tag">Data Structures</span>
+            <span class="skill-tag">Algorithms</span>
+            <span class="skill-tag">Databases</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- PROJECTS -->
+    <section id="projects">
+      <div class="section-label">Projects</div>
+      <div class="section-title">What I've Built</div>
+      <div class="projects-grid">
+        <div class="project-card">
+          <div class="project-type">Web App</div>
+          <div class="project-title">Student Information System</div>
+          <div class="project-desc">
+            A full-stack web application for managing student records,
+            enrollment, and grades — built as a capstone project.
+          </div>
+          <div class="project-tags">
+            <span class="project-tag">React</span>
+            <span class="project-tag">Node.js</span>
+            <span class="project-tag">MySQL</span>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="project-type">Data & Analytics</div>
+          <div class="project-title">Sentiment Analyzer</div>
+          <div class="project-desc">
+            A Python-based NLP tool that classifies social media comments into
+            positive, negative, or neutral sentiment.
+          </div>
+          <div class="project-tags">
+            <span class="project-tag">Python</span>
+            <span class="project-tag">NLTK</span>
+            <span class="project-tag">Pandas</span>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="project-type">System Design</div>
+          <div class="project-title">Library Management CLI</div>
+          <div class="project-desc">
+            A command-line application for managing book inventory, borrower
+            records, and due-date tracking using OOP principles.
+          </div>
+          <div class="project-tags">
+            <span class="project-tag">Java</span>
+            <span class="project-tag">OOP</span>
+            <span class="project-tag">File I/O</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- EDUCATION -->
+    <section id="education">
+      <div class="section-label">Education</div>
+      <div class="section-title">Academic Background</div>
+      <div class="edu-card">
+        <div class="edu-icon">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="#2a6fdb"
+            stroke-width="1.8"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+            <path d="M6 12v5c3.33 2 8.67 2 12 0v-5" />
+          </svg>
+        </div>
+        <div>
+          <div class="edu-degree">Bachelor of Science in Computer Science</div>
+          <div class="edu-school">University — Cebu, Philippines</div>
+          <div class="edu-year">Graduated 2025</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="section-label">Contact</div>
+      <div class="section-title">Let's Connect</div>
+      <div class="contact-wrapper">
+        <p>
+          I'm actively looking for opportunities as a fresh graduate. Whether
+          you have a role, a project, or just want to say hello — my inbox is
+          open.
+        </p>
+        <div class="contact-links">
+          <a href="mailto:jomar.baculi@email.com" class="contact-link">
+            <div class="contact-link-icon">
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#2a6fdb"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <rect x="2" y="4" width="20" height="16" rx="2" />
+                <path d="M22 7l-10 7L2 7" />
+              </svg>
+            </div>
+            <div>
+              <div class="contact-link-label">Email</div>
+              <div class="contact-link-value">jomar.baculi@email.com</div>
+            </div>
+          </a>
+          <a
+            href="https://github.com/jomarbaculi"
+            target="_blank"
+            class="contact-link"
+          >
+            <div class="contact-link-icon">
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#2a6fdb"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"
+                />
+              </svg>
+            </div>
+            <div>
+              <div class="contact-link-label">GitHub</div>
+              <div class="contact-link-value">github.com/jomarbaculi</div>
+            </div>
+          </a>
+          <a
+            href="https://linkedin.com/in/jomarbaculi"
+            target="_blank"
+            class="contact-link"
+          >
+            <div class="contact-link-icon">
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#2a6fdb"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"
+                />
+                <rect x="2" y="9" width="4" height="12" />
+                <circle cx="4" cy="4" r="2" />
+              </svg>
+            </div>
+            <div>
+              <div class="contact-link-label">LinkedIn</div>
+              <div class="contact-link-value">linkedin.com/in/jomarbaculi</div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <p>Built by <span>Jomar Baculi</span> · BS Computer Science · 2025</p>
+    </footer>
+  </body>
+</html>
